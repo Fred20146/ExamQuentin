@@ -1,6 +1,9 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import { prismaClient } from "./prisma";
+import {router as userRouter} from "./routes/user.router";
+import {router as todoRouter} from "./routes/todo.router"
 
 dotenv.config();
 
@@ -8,13 +11,20 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-export const router = express.Router();
 
-app.use("/express", Express);
+const router = express.Router();
+app.use("/users", userRouter);
+app.use("/todo", todoRouter);
 
-router.get("/express", Express);
+// app.get("/", (req, res) => {
+//   res.json("Hello, World!");
+// });
 
+// app.get("/todos", async (req, res) => {
+//   const todos = await prismaClient.todo.findMany();
+//   res.json(todos);
+// });
 
-export function Express() {
-    return "Hello, World!";
-}
+app.listen(3009, () => {
+  console.log("3009");
+});
