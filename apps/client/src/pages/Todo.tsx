@@ -31,7 +31,7 @@ const Todoss = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:3009/vehicule/", {}).then((res) => {
+    axios.get("http://localhost:3009/todo/", {}).then((res) => {
       setTodo(res.data);
     });
     
@@ -118,8 +118,8 @@ const Todoss = () => {
             <Fragment key={todo.id}>
               <HStack>
                 <ListItem>{todo.id}</ListItem>
-                <ListItem>{todo.title}</ListItem>
                 <ListItem>{todo.username}</ListItem>
+                <ListItem>{todo.title}</ListItem>
                
                 <Button onClick={() => deleteTodo(todo.id)}>🗑️</Button>
                 <Button
